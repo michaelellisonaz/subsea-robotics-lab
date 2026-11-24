@@ -1,0 +1,46 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Script" path="res://src/app/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://src/simulation/simulation_engine.gd" id="2_engine"]
+[ext_resource type="PackedScene" path="res://scenes/environment/underwater_environment.tscn" id="3_environment"]
+[ext_resource type="PackedScene" path="res://scenes/camera/orbit_camera.tscn" id="4_camera"]
+[ext_resource type="PackedScene" path="res://scenes/ui/dashboard.tscn" id="5_dashboard"]
+[ext_resource type="PackedScene" path="res://scenes/vehicles/rov_visual.tscn" id="6_rov"]
+[ext_resource type="Script" path="res://src/camera/view_controller.gd" id="7_views"]
+[ext_resource type="Script" path="res://src/app/pilot_input.gd" id="8_pilot"]
+[ext_resource type="Script" path="res://src/rendering/sensors/sensor_overlay.gd" id="9_overlay"]
+[ext_resource type="Script" path="res://src/rendering/sensors/stereo_feed.gd" id="10_stereo"]
+[ext_resource type="Script" path="res://src/rendering/structures/pipeline_renderer.gd" id="11_pipeline"]
+[ext_resource type="Script" path="res://src/rendering/objects/object_visuals.gd" id="12_objects"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_main")
+
+[node name="SimulationEngine" type="Node" parent="."]
+script = ExtResource("2_engine")
+
+[node name="UnderwaterEnvironment" parent="." instance=ExtResource("3_environment")]
+
+[node name="OrbitCamera" parent="." instance=ExtResource("4_camera")]
+
+[node name="PipelineRenderer" type="Node3D" parent="."]
+script = ExtResource("11_pipeline")
+
+[node name="ObjectVisuals" type="Node3D" parent="."]
+script = ExtResource("12_objects")
+
+[node name="RovVisual" parent="." instance=ExtResource("6_rov")]
+
+[node name="SensorOverlay" type="MeshInstance3D" parent="."]
+script = ExtResource("9_overlay")
+
+[node name="StereoFeed" type="Node" parent="."]
+script = ExtResource("10_stereo")
+
+[node name="ViewController" type="Node" parent="."]
+script = ExtResource("7_views")
+
+[node name="PilotInput" type="Node" parent="."]
+script = ExtResource("8_pilot")
+
+[node name="Dashboard" parent="." instance=ExtResource("5_dashboard")]

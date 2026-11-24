@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://src/rendering/environment_renderer.gd" id="1_renderer"]
+[ext_resource type="Script" path="res://src/rendering/seabed_renderer.gd" id="2_seabed"]
+[ext_resource type="Script" path="res://src/rendering/reference_markers.gd" id="3_markers"]
+[ext_resource type="Script" path="res://src/rendering/water_surface.gd" id="4_surface"]
+[ext_resource type="Script" path="res://src/rendering/marine_snow.gd" id="5_snow"]
+
+[node name="UnderwaterEnvironment" type="Node3D"]
+script = ExtResource("1_renderer")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="DownwellingLight" type="DirectionalLight3D" parent="."]
+
+[node name="Seabed" type="Node3D" parent="."]
+script = ExtResource("2_seabed")
+
+[node name="ReferenceMarkers" type="Node3D" parent="."]
+script = ExtResource("3_markers")
+
+[node name="WaterSurface" type="MeshInstance3D" parent="."]
+script = ExtResource("4_surface")
+
+[node name="MarineSnow" type="GPUParticles3D" parent="."]
+script = ExtResource("5_snow")

@@ -1,0 +1,9 @@
+# Godot 4 generated data
+.godot/
+/android/
+
+# Local exports and scratch
+/build/
+/export/
+*.tmp
+tests/_tmp/
